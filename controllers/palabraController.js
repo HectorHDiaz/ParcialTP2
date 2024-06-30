@@ -54,6 +54,16 @@ deletePalabra = async(req, res) =>{
   }
 }
 
+getApiPalabras = async(req, res) => {
+  try {
+    const {cantidad} = req.params
+    const data = await this.palabraServices.getApiPalabrasService(cantidad);
+    res.status(200).send({ Msg: data });
+    } catch (error) {
+    res.status(422).send({ errorMsg: "no valida api" });
+  }
+}
+
 }
 
 export default PalabraController;

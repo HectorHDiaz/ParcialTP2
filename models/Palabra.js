@@ -10,8 +10,9 @@ getById = async (id) =>{
   return this.palabras[index];
 }
 create = async (newPalabra) =>{
-  if(newPalabra.length < 8){
-    throw error
+  const palabraValidate = /^[a-zA-Z]+$/.test(newPalabra);
+  if(newPalabra.length < 8 || !palabraValidate){
+    throw "Modelo no valido"
   }
   return this.palabras.push(newPalabra)
 }
@@ -27,5 +28,11 @@ delete = async (index) =>{
   }
   return this.palabras.splice(index, 1);
 }
+
+postApiData = async(palabras)=>{
+  this.palabras.push(...palabras)
+  return this.palabras;
+}
+
 }
 export default Palabra

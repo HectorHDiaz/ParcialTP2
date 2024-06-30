@@ -10,4 +10,6 @@ palabraRouter.post("/", palabraController.createPalabra);
 palabraRouter.put("/:id", palabraController.editPalabra);
 palabraRouter.delete("/:id", palabraController.deletePalabra);
 
+palabraRouter.post("/api/:cantidad", palabraController.getApiPalabras);
+
 export default palabraRouter;

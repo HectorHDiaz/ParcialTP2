@@ -27,6 +27,7 @@ createPalabraService = async(newPalabra) =>{
     if(!newPalabra){
       throw error
     }
+    
     return this.palabraModel.create(newPalabra)
   } catch (error) {
     throw error
@@ -52,6 +53,19 @@ deletePalabraService = async(index) =>{
     return this.palabraModel.delete(index)
   } catch (error) {
     throw error
+  }
+}
+
+getApiPalabrasService = async (cantidad) => {
+  try {
+    if(!cantidad){
+      throw error
+    }
+    const apiData= await fetch(`https://texto.deno.dev/palabras?cantidad=${cantidad}`)
+    const {palabras}= await apiData.json()
+    return await this.palabraModel.postApiData(palabras);
+  } catch (error) {
+    
   }
 }
 
